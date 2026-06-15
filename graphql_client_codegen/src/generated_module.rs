@@ -30,6 +30,7 @@ pub(crate) struct GeneratedModule<'a> {
     pub resolved_query: &'a crate::query::Query,
     pub schema: &'a crate::schema::Schema,
     pub options: &'a crate::GraphQLClientCodegenOptions,
+    pub common: &'a TokenStream,
 }
 
 impl GeneratedModule<'_> {
@@ -62,6 +63,7 @@ impl GeneratedModule<'_> {
         let operation_name = self.operation;
         let operation_name_ident = self.options.normalization().operation(self.operation);
         let operation_name_ident = Ident::new(&operation_name_ident, Span::call_site());
+        let common = &self.common;
 
         // Force cargo to refresh the generated code when the query file changes.
         let query_include = self
@@ -98,6 +100,8 @@ impl GeneratedModule<'_> {
                 pub const QUERY: &str = #query_string;
 
                 #query_include
+
+                #common
 
                 #impls
             }
