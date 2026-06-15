@@ -136,7 +136,7 @@ fn generate_module_token_stream_inner(
 
     let operations = match (operations, &options.mode) {
         (Some(ops), _) => ops,
-        (None, &CodegenMode::Cli) => query.operations().collect(),
+        (None, &CodegenMode::Cli | &CodegenMode::FunctionLike) => query.operations().collect(),
         (None, &CodegenMode::Derive) => {
             return Err(GeneralError(derive_operation_not_found_error(
                 options.struct_ident(),
