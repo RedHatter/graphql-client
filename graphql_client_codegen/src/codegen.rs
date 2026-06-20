@@ -186,9 +186,9 @@ fn generate_scalar_definitions<'a, 'schema: 'a>(
             );
 
             if let Some(custom_scalars_module) = options.custom_scalars_module() {
-                quote!(type #ident = #custom_scalars_module::#ident;)
+                quote!(pub type #ident = #custom_scalars_module::#ident;)
             } else {
-                quote!(type #ident = super::#ident;)
+                quote!(pub type #ident = super::#ident;)
             }
         })
 }
