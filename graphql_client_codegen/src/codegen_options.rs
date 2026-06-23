@@ -189,7 +189,7 @@ impl GraphQLClientCodegenOptions {
                 pub_token: Pub::default(),
                 in_token: None,
                 paren_token: Paren::default(),
-                path: syn::parse_str(&visibility).unwrap(),
+                path: syn::parse_str(visibility).unwrap(),
             }),
         };
 

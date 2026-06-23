@@ -23,7 +23,7 @@ pub(crate) fn response_for_query(
 ) -> Result<TokenStream, GeneralError> {
     let serde = options.serde_path();
 
-    let all_used_types = all_used_types(&vec![operation_id], &query);
+    let all_used_types = all_used_types(&[operation_id], &query);
     let response_derives = render_derives(options.all_response_derives());
     let variable_derives = render_derives(options.all_variable_derives());
 
